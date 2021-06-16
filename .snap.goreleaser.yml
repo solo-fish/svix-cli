@@ -19,10 +19,6 @@ snapcrafts:
     confinement: strict
     license: GPL-3.0
     base: core20
-    extra_files:
-      - source: svix-cli.wrapper
-        destination: bin/svix-cli.wrapper
-        mode: 0755
     layout:
       /etc/svix-cli:
         bind: $SNAP_DATA/etc
