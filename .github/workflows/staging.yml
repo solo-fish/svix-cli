@@ -36,6 +36,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GORELEASER_GITHUB_TOKEN }}
           
+      -
+        name: Debugging step
+        run: |
+          ls dist
+
       - name: Update latest release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
