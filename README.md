@@ -38,7 +38,7 @@ snap install svix-cli
 ```
 The latest binary release
 ```bash
-bash <(curl -sL https://github.com/svix/svix-cli/releases/download/latest/svix.tar.gz | tar xz && mv svix-cli /usr/bin/)
+bash <(curl -sL https://github.com/svix/svix-cli/releases/download/latest/svix.tar.gz | tar xz && mv svix /usr/bin/)
 ```
 
 ### From source
@@ -76,9 +76,6 @@ svix help
 # or add the `--help` flag to any command for a more detailed description and list of flags
 svix [command] --help
 ```
-
-curl -sL  | tar zx && sudo mv ./light-ca /usr/bin/light-ca
-
 ## Quick Start
 
 ```sh
