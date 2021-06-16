@@ -58,38 +58,39 @@ scoop:
   homepage: https://www.svix.com
   description: Svix CLI utility
 snapcrafts:
-  -
-    # ID of the snapcraft config, must be unique.
-    # Defaults to "default".
-    id: ci-snaps
+  # -
+  #   # ID of the snapcraft config, must be unique.
+  #   # Defaults to "default".
+  #   id: ci-snaps
 
-    # Build IDs for the builds you want to create snapcraft packages for.
-    # Defaults to all builds.
-    # Ex:
-    # builds:
-    # - staging
-    # - release
+  #   # Build IDs for the builds you want to create snapcraft packages for.
+  #   # Defaults to all builds.
+  #   # Ex:
+  #   # builds:
+  #   # - staging
+  #   # - release
 
-    # You can change the name of the package.
-    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+  #   # You can change the name of the package.
+  #   name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
 
-    # Replacements for GOOS and GOARCH in the package name.
-    # Keys should be valid GOOSs or GOARCHs.
-    # Values are the respective replacements.
-    # Default is empty.
-    replacements:
-      linux: Linux
-      386: i386
-      amd64: x86_64
+  #   # Replacements for GOOS and GOARCH in the package name.
+  #   # Keys should be valid GOOSs or GOARCHs.
+  #   # Values are the respective replacements.
+  #   # Default is empty.
+  #   replacements:
+  #     linux: Linux
+  #     386: i386
+  #     amd64: x86_64
+
+    # # Wether to publish the snap to the snapcraft store.
+    # # If true then you must `snapcraft login` first.
+    # # Defaults to false.
+    # publish: false
 
     # The name of the snap. This is optional.
     # Default is project name.
     name: svix-cli
 
-    # Wether to publish the snap to the snapcraft store.
-    # If true then you must `snapcraft login` first.
-    # Defaults to false.
-    publish: false
 
     # Single-line elevator pitch for your amazing snap.
     # 79 char long at most.
@@ -167,7 +168,7 @@ snapcrafts:
     # Ex:
     layout:
       # The path you want to access in sandbox.
-      /etc/svix:
+      /etc/svix-cli:
 
         # Which outside file or directory you want to map to sandbox.
         # Valid keys are:
