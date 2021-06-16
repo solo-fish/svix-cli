@@ -4,8 +4,9 @@ CFLAGS = build -o
 OUT_DIR = dist
 PROJ_NAME = svix
 
-build: clean deps build-local test
-release: build releaser compress
+build: clean deps check build-local test 
+check: build releaser check
+release: build releaser release
 .:  release run
 
 clean:
@@ -23,12 +24,14 @@ run:
 test:
 	$(CC) test ./...
 
-compress:
-	tar -cf $(OUT_DIR)/$(PROJ_NAME).tar.gz $(OUT_DIR)/$(PROJ_NAME)
-
 releaser:
 	$(SHELL) <(curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh) && mv bin/goreleaser . && rm -rf bin
-	sudo snap install snapcraft --classic
+
+check:
+	./goreleaser check
+
+release:
+	snap install snapcraft --classic
 	./goreleaser  release --snapshot --skip-publish --rm-dist
 
 help: 
