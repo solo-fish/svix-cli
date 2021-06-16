@@ -41,11 +41,10 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
-          automatic_release_tag: latest
+          automatic_release_tag: development
           files: |
             dist/config.yaml
             dist/*.tar.gz
             dist/*.apk
             dist/*.rpm
             dist/*.deb
-            
