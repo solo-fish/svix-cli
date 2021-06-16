@@ -57,12 +57,6 @@ scoop:
     email: support@svix.com
   homepage: https://www.svix.com
   description: Svix CLI utility
-changelog:
-  sort: asc
-  filters:
-    exclude:
-      - '^docs:'
-      - '^test:'
 snapcrafts:
   -
     # ID of the snapcraft config, must be unique.
@@ -230,3 +224,9 @@ snapcrafts:
         - $HOME/.$SNAP_NAME
         write:
         - $HOME/.$SNAP_NAME
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'

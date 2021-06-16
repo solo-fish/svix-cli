@@ -21,9 +21,6 @@ jobs:
         with:
           go-version: ${{ matrix.goVer }}
           
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
-
       # Checks out this ^HEAD from a PR
       - name: checkout
         uses: actions/checkout@v2
