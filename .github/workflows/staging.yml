@@ -43,6 +43,7 @@ jobs:
           prerelease: true
           automatic_release_tag: latest
           files: |
+            dist/config.yaml
             dist/*.tar.gz
             dist/*.apk
             dist/*.rpm
