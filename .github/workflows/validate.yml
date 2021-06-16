@@ -2,7 +2,8 @@ name: validate
 on: 
   pull_request:
     branches: [main]
-    types: [opened, synchronize, closed]
+    types: [opened, closed]
+
   push:
     branches: [ main ]
 
@@ -15,11 +16,13 @@ jobs:
         goVer: [1.16.x]
 
     steps:
-
       - name: Set up Go ${{ matrix.goVer }}
         uses: actions/setup-go@v1
         with:
           go-version: ${{ matrix.goVer }}
+          
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
 
       # Checks out this ^HEAD from a PR
       - name: checkout
@@ -30,4 +33,3 @@ jobs:
       - name: make
         run: |
           make
-      
