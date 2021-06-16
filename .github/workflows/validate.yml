@@ -1,7 +1,9 @@
 name: validate
 on: 
   pull_request:
-    types: [ edited, assigned, opened, synchronize, reopened ]
+    branches: [main]
+    types: [opened, closed]
+
   push:
     branches: [ main ]
 
@@ -14,12 +16,11 @@ jobs:
         goVer: [1.16.x]
 
     steps:
-
       - name: Set up Go ${{ matrix.goVer }}
         uses: actions/setup-go@v1
         with:
           go-version: ${{ matrix.goVer }}
-
+          
       # Checks out this ^HEAD from a PR
       - name: checkout
         uses: actions/checkout@v2
@@ -29,4 +30,3 @@ jobs:
       - name: make
         run: |
           make
-      
