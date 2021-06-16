@@ -32,7 +32,7 @@ jobs:
         with:
           distribution: goreleaser
           version: latest
-          args: release --rm-dist
+          args: release --rm-dist -f .snap.goreleaser.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
@@ -53,3 +53,4 @@ jobs:
             dist/*.apk
             dist/*.rpm
             dist/*.deb
+            dist/*.snap
