@@ -2,9 +2,8 @@ name: staging
 
 on:
   pull_request:
-    branches: [main]
-    types: [opened, synchronize, closed]
-
+    types: [ edited, assigned, opened, synchronize, reopened ]
+    
 permissions:
   contents: write
 
