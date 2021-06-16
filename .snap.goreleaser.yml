@@ -1,6 +1,6 @@
 snapcrafts:
   -
-    id: svix-cli
+    id: svix-cli-dev
     builds:
     - svix-cli
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
