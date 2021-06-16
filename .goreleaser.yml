@@ -58,7 +58,7 @@ scoop:
   homepage: https://www.svix.com
   description: Svix CLI utility
 snapcrafts:
-  # -
+  -
   #   # ID of the snapcraft config, must be unique.
   #   # Defaults to "default".
   #   id: ci-snaps
@@ -82,10 +82,10 @@ snapcrafts:
   #     386: i386
   #     amd64: x86_64
 
-    # # Wether to publish the snap to the snapcraft store.
-    # # If true then you must `snapcraft login` first.
-    # # Defaults to false.
-    # publish: false
+  #  # Wether to publish the snap to the snapcraft store.
+  #  # If true then you must `snapcraft login` first.
+  #  # Defaults to false.
+  #  publish: false
 
     # The name of the snap. This is optional.
     # Default is project name.
