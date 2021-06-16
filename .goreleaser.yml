@@ -78,10 +78,11 @@ snapcrafts:
     # Values are the respective replacements.
     # Default is empty.
     replacements:
-      amd64: 64-bit
-      386: 32-bit
-      darwin: macOS
-      linux: Tux
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
 
     # The name of the snap. This is optional.
     # Default is project name.
@@ -166,17 +167,17 @@ snapcrafts:
     # https://snapcraft.io/docs/snap-layouts
     # Default is empty.
     # Ex:
-    # layout:
-    #   # The path you want to access in sandbox.
-    #   /etc/svix:
+    layout:
+      # The path you want to access in sandbox.
+      /etc/svix:
 
-    #     # Which outside file or directory you want to map to sandbox.
-    #     # Valid keys are:
-    #     # * bind - Bind-mount a directory.
-    #     # * bind_file - Bind-mount a file.
-    #     # * symlink - Create a symbolic link.
-    #     # * type - Mount a private temporary in-memory filesystem.
-    #     bind: $SNAP_DATA/etc
+        # Which outside file or directory you want to map to sandbox.
+        # Valid keys are:
+        # * bind - Bind-mount a directory.
+        # * bind_file - Bind-mount a file.
+        # * symlink - Create a symbolic link.
+        # * type - Mount a private temporary in-memory filesystem.
+        bind: $SNAP_DATA/etc
 
     # Each binary built by GoReleaser is an app inside the snap. In this section
     # you can declare extra details for those binaries. It is optional.
@@ -208,9 +209,7 @@ snapcrafts:
 
         # You can override the command name.
         # Defaults is the app name.
-        # EX: 
-        # command: bin/svix.wrapper
-
+        command: bin/svix-cli
         # Restart condition of the snap.
         # Defaults to empty.
         # https://snapcraft.io/docs/snapcraft-yaml-reference
@@ -225,6 +224,7 @@ snapcrafts:
         - $HOME/.$SNAP_NAME
         write:
         - $HOME/.$SNAP_NAME
+
 changelog:
   sort: asc
   filters:
