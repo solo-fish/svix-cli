@@ -1,0 +1,36 @@
+project_name: svix-cli
+snapcrafts:
+  -
+    id: svix-cli
+    #builds:
+    #- svix-cli
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    replacements:
+      amd64: x86_64
+      386: i386
+      darwin: Darwin
+      linux: Linux
+    name: svix-cli
+    publish: false
+    summary: A CLI to interact with the Svix API.
+    description: |
+      Svix makes it easy to send webhook from your service while ensuring robust deliverability and a great developer experience for your users. 
+      You can think of it as webhooks as a service. https://docs.svix.com/
+    grade: stable
+    confinement: strict
+    license: GPL-3.0
+    base: core20
+    layout:
+      /etc/svix-cli:
+        bind: $SNAP_DATA/etc
+    apps:
+      svix-cli:
+        plugs: ["home", "network", "personal-files"]
+        command: svix-cli
+    plugs:
+      personal-files:
+        read:
+        - $HOME/.svix-cli
+        write:
+        - $HOME/.svix-cli
+

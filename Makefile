@@ -1,23 +1,12 @@
-# Copyright (C) 2021 light-river, LLC
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 CC = go
+SHELL = bash
 CFLAGS = build -o
 OUT_DIR = dist
 PROJ_NAME = svix
 
-build: clean deps build-local test
-release: build releaser compress
+build: clean deps check build-local test 
+check: build releaser check
+release: build releaser release
 .:  release run
 
 clean:
@@ -35,16 +24,20 @@ run:
 test:
 	$(CC) test ./...
 
-compress:
-	tar -cf $(OUT_DIR)/$(PROJ_NAME).tar.gz $(OUT_DIR)/$(PROJ_NAME)
-
 releaser:
-	$(bash curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh)
+	$(SHELL) <(curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh) && mv bin/goreleaser . && rm -rf bin
+
+check:
+	./goreleaser check
+
+release:
+	snap install snapcraft --classic
+	./goreleaser  release --snapshot --skip-publish --rm-dist
 
 help: 
 	tail -15 Makefile
 
-.PHONY: . deps build test compress run clean all release docs releaser
+.PHONY: . deps build test compress run clean all release docs releaser check
 
 #	make
 # 		This target is the whole "shebang" (no pun intended) 
