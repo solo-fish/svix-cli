@@ -1,0 +1,48 @@
+name: staging
+
+on:
+  pull_request:
+    branches: [main]
+    types: [ edited, assigned, opened, synchronize, reopened ]
+    tags: 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  staging-release:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v2
+                
+      - 
+        name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
+
+      -
+        name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
+      -
+        name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --rm-dist -f .snap.goreleaser.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update latest release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: true
+          automatic_release_tag: development
+          files: |
+            dist/config.yaml
+            dist/*.snap
